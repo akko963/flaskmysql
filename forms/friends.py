@@ -6,7 +6,7 @@ mysql = MySQLConnector(app,'friendsdb')
 def index():
     query = "SELECT * FROM friends"                           # define your query
     friends = mysql.query_db(query)                           # run query with query_db()
-    return render_template('index.html', all_friends=friends) # pass data to our template
+    return render_template('friends.html', all_friends=friends) # pass data to our template
 
 @app.route('/friends', methods=['POST'])
 def create():
