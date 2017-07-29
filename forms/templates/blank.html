@@ -1,0 +1,36 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="description" content="Blank template for testing python outputs">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Untitled</title>
+        <link rel="stylesheet" href="">
+        <script src=".js"></script>
+    </head>
+    <body>
+    <div id="bar">
+        <h3 id="brand">Coding Dojo Wall</h3><h4 id="loggedin"> Welcome, 
+        </h4> <a href="#">Mike<!-- {{ session['user_name'] }} --></a> 
+        <form action="/logout" method="GET">
+        <input type="submit" id="logoutbutton" value="Logout"></form>
+    </div>
+    <h4 id="posthead">Post a message</h4>
+    <form id="postform" style="margin-left:30px;" action="/post" method="POST" >
+        <input type="textarea" id="post" name="post" rows =6 cols=130>
+        <input type="hidden" id="uid" name="uid" value="{{session['uid']}}">
+        <input id="postbutton" type="submit" value="Post a message">
+    </form>
+    <article class="bubble">
+    <h5 class="heading">User - Month 99 2344</h5>
+    <div class="container">
+        <p class="message"></p>
+    </div>
+    </article>
+               {% for msg in msgs: %}
+          {{ msg|safe }}
+        {% endfor %}
+
+
+    </body>
+</html>

@@ -9,16 +9,35 @@ PASS_REGEX = re.compile(r'^[a-zA-Z@#$%_-]{8,21}$')
 app = Flask(__name__)
 bcrypt = Bcrypt(app)
 app.secret_key = 'nobodyknows'
-mysql = MySQLConnector(app,'reguserdb')
+mysql = MySQLConnector(app,'walldb')
 
 @app.route('/')  # Route shows a login form (div) if no #session else user info
   # check session. (if session exists retrieve self's info)
 def index():
    print("re routed to main",session.get('validated'))
    if 'validated' in session:
-      return render_template('myinfo.html')
+      return render_template('wall.html')
    else:
       return render_template('login.html')
+
+
+@app.route('/allusers',methods=['GET'])
+   # retrieve user names
+def allusers():
+   if 'validated' in session:
+      msgs = mysql.query_db("SELECT * from messages ORDER BY created_at DESC")
+      comments = mysql.query_db("SELECT * from comments")
+   pendingnodes=[]
+   for msg in msgs:
+      identifier = " id="+msg['id']+" "
+      code = "<article class='bubble' %s ><h5 class='heading'>%s - %s</h5><div class='container'><p class='message'>%s</p></div></article>"\
+      %(identifier,msg['user_id'],msg['created_at'],msg['message'])
+      comments = mysql.query_db("SELECT * from comments  where comments.message.id=%s ORDER BY comments.created_at DESC"%comments['message_id'])
+# 'class="comment"',user,created_at
+
+      return render_template('allusers.html',msgs=msgboxes)
+   return redirect('/')
+
 
 #it will keep coming back here if registration fails
 @app.route('/register')
@@ -89,12 +108,6 @@ def logout():
       session.pop('email')
    return redirect('/')
 
-@app.route('/allusers',methods=['GET'])
-   # retrieve user names
-def allusers():
-   ans = mysql.query_db("SELECT * from users")
-   return render_template('allusers.html',records = ans)
-
 #check errors on users, their names and passwords
 def checkErrors(user,fname,lname,email,pwd):
    if not USER_REGEX.match(user):
@@ -111,3 +124,7 @@ def checkErrors(user,fname,lname,email,pwd):
    return None
 
 app.run(debug=True,host='0.0.0.0',port=9004)
+
+
+# Features to add; to consider: Make the  registration page refilled after rejected reg.
+# Highlight the error-fields. Display all the error messages. Preferably next to their respective input field.

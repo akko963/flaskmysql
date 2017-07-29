@@ -41,27 +41,15 @@
         padding: 3px 15px;
     }
 
-    * {
-        margin: 0px;
-        padding: 0px;
-    }
-    
-    body {
-        background-color: gainsboro;
-        font-family: lucida;
-        width: 950px;
-        min-height: 600px;
-
-        padding: 50px;
-    }
     h2 {
         margin: 20px 10px;
+        text-align: center;
     }
 
     label {
         display: inline-block;
         width: 100px;
-        margin-left: 40px;
+        margin-left: 24px;
     }
 
     .textinput {
@@ -73,36 +61,60 @@
 
     #button {
         display: block;
-        width: 60px;
+        width: 160px;
         margin: auto;
         margin-top: 10px;
         padding: 3px 10px;
     }
 
     #container {
+        display: inline-block;
+        margin-left: 250px;   
+
         width: 380px;
-        margin: 10px;
         padding: 30px 30px;
         border: 1px solid black;
         border-radius: 5px;
         box-shadow: 2px 2px 4px gray;
-    }
-    
-    p {
-        margin: auto;
-        margin-left: 10px;
-        color: peru;
-        background-color: wheat;
-        padding: 10px 40px;
-        width: 500px;
-        min-height: 50px;
-        border-radius: 5px;
-        border: 1px solid black;
-    }
+        }
+
+.info, .success, .warning, .error {
+margin: 10px 0px 10px 30px;
+padding:12px;
+padding-left: 30px;
+
+border-radius: .5em;
+border:1px solid;
+box-shadow: 1px 1px 3px #777;
+min-width: 400px;
+font-size: 0.9em
+}
+.info {
+    color: #00529B;
+    background-color: #BDE5F8;
+}
+.success {
+    color: #4F8A10;
+    background-color: #DFF2BF;
+}
+.warning {
+    color: #9F6000;
+    background-color: #FEEFB3;
+}
+.error {
+    color: #D8000C;
+    background-color: #FFBABA;
+}
+/*https://isabelcastillo.com/error-info-messages-css*/
     </style>
 </head>
 
-<body style="max-width:500px; ">
+<body">
+    <div id="bar">
+        <h3 id="brand">Coding Dojo Wall</h3><h4 id="loggedin"> Welcome.
+        </h4> 
+    </div>
+
     <h2>Register</h2>
     <div id=container>
         <form action='/register/new' method='POST'>
@@ -122,9 +134,13 @@
             <input type="submit" id="button" value="Register">
         </form>
     </div>
-    {% with messages = get_flashed_messages() %} {% if messages %}
-    <p>{{ messages[0]}}</p>
-    {% endif %} {% endwith %}
+    {% with messages = get_flashed_messages(with_categories=true) %} 
+        {% if messages %}
+            {% for cat, msg in  messages %}
+                <div class='{{cat}}'>{{msg}}</div>
+            {% endfor %}
+        {% endif %} 
+    {% endwith %}
 
 </body>
 
