@@ -5,13 +5,13 @@
     <meta charset="utf-8">
     <meta name="description" content="CRUD + RESTFUL Operations in flask/mysql">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>USER DB Demo - addform for Create  :  CRUD + RESTFUL Operations in flask</title>
+    <title>USER DB Demo - addform for Create : CRUD + RESTFUL Operations in flask</title>
     <style>
     * {
         margin: 0px;
         padding: 0px;
     }
-    
+
     body {
         background-color: gainsboro;
         font-family: lucida;
@@ -20,6 +20,7 @@
 
         padding: 50px;
     }
+
     h2 {
         margin: 20px 10px;
     }
@@ -50,11 +51,13 @@
         border-radius: 5px;
         box-shadow: 2px 2px 4px gray;
     }
+
     #button {
         margin: auto;
         margin-top: 10px;
         display: block;
     }
+
     p {
         margin: auto;
         margin-left: 10px;
@@ -66,33 +69,41 @@
         border-radius: 5px;
         border: 1px solid black;
     }
-.info, .success, .warning, .error {
-margin: 10px 0px 10px 30px;
-padding:12px;
-padding-left: 30px;
-border-radius: .5em;
-border:1px solid;
-box-shadow: 1px 1px 3px #777;
-min-width: 400px;
-font-size: 0.9em
-}
-.info {
-    color: #00529B;
-    background-color: #BDE5F8;
-}
-.success {
-    color: #4F8A10;
-    background-color: #DFF2BF;
-}
-.warning {
-    color: #9F6000;
-    background-color: #FEEFB3;
-}
-.error {
-    color: #D8000C;
-    background-color: #FFBABA;
-}
-/*https://isabelcastillo.com/error-info-messages-css*/      
+
+    .info,
+    .success,
+    .warning,
+    .error {
+        margin: 10px 0px 10px 30px;
+        padding: 12px;
+        padding-left: 30px;
+        border-radius: .5em;
+        border: 1px solid;
+        box-shadow: 1px 1px 3px #777;
+        min-width: 400px;
+        font-size: 0.9em
+    }
+
+    .info {
+        color: #00529B;
+        background-color: #BDE5F8;
+    }
+
+    .success {
+        color: #4F8A10;
+        background-color: #DFF2BF;
+    }
+
+    .warning {
+        color: #9F6000;
+        background-color: #FEEFB3;
+    }
+
+    .error {
+        color: #D8000C;
+        background-color: #FFBABA;
+    }
+    /*https://isabelcastillo.com/error-info-messages-css*/
     </style>
 </head>
 
@@ -106,18 +117,12 @@ font-size: 0.9em
             <input class="textinput" type="text" name="lname" id="lname">
             <label for="email">Email:</label>
             <input class="textinput" type="text" name="email" id="email">
-            
             <input type="submit" id="button" value="Add">
         </form>
     </div>
-    {% with messages = get_flashed_messages(with_categories=true) %} 
-        {% if messages %}
-            {% for cat, msg in  messages %}
-                <div class='{{cat}}'>{{msg}}</div>
-            {% endfor %}
-        {% endif %} 
-    {% endwith %}
-
+    {% with messages = get_flashed_messages(with_categories=true) %} {% if messages %} {% for cat, msg in messages %}
+    <div class='{{cat}}'>{{msg}}</div>
+    {% endfor %} {% endif %} {% endwith %}
 </body>
 
 </html>

@@ -5,48 +5,52 @@
     <meta charset="utf-8">
     <meta name="description" content="CRUD + RESTFUL Operations in flask/mysql">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>USER DB Demo - getuser(1) for Retrieve  :  CRUD + RESTFUL Operations in flask</title>
+    <title>USER DB Demo - getuser(1) for Retrieve : CRUD + RESTFUL Operations in flask</title>
     <style>
     * {
         margin: 0px;
         padding: 0px;
     }
-    
+
     body {
         background-color: gainsboro;
         font-family: lucida;
-        width: 950px;
+        width: 850px;
         min-height: 800px;
 
         padding: 50px;
     }
+
     h2 {
         margin: 20px 10px;
         display: inline-block;
     }
+
     #addlink {
         display: inline-block;
         margin-left: 300px;
     }
-    a{
+
+    a {
         margin-right: 5px;
     }
+
     label {
         display: inline-block;
         width: 100px;
         margin-left: 40px;
     }
 
-    .textinput {
-        display: inline-block;
-        width: 200px;
-        margin: 5px 5px;
-    }
-
     input {
         display: inline;
         width: 60px;
         padding: 3px 3px;
+    }
+
+    .textinput {
+        display: inline-block;
+        width: 200px;
+        margin: 5px 5px;
     }
 
     #container {
@@ -65,7 +69,7 @@
         color: #039;
         padding: 10px 8px;
         border-bottom: 2px solid #6678b1;
-        width: 155px;
+        width: 170px;
     }
 
     td {
@@ -76,48 +80,51 @@
     tbody tr:hover td {
         color: #009;
     }
-.info, .success, .warning, .error {
-margin: 10px 0px 10px 30px;
-padding:12px;
-padding-left: 30px;
-border-radius: .5em;
-border:1px solid;
-box-shadow: 1px 1px 3px #777;
-min-width: 400px;
-font-size: 0.9em
-}
-.info {
-    color: #00529B;
-    background-color: #BDE5F8;
-}
-.success {
-    color: #4F8A10;
-    background-color: #DFF2BF;
-}
-.warning {
-    color: #9F6000;
-    background-color: #FEEFB3;
-}
-.error {
-    color: #D8000C;
-    background-color: #FFBABA;
-}
-th{
-    min-width: 120px;
-}
-/*https://isabelcastillo.com/error-info-messages-css*/      
+
+    .info,
+    .success,
+    .warning,
+    .error {
+        margin: 10px 0px 10px 30px;
+        padding: 12px;
+        padding-left: 30px;
+        border-radius: .5em;
+        border: 1px solid;
+        box-shadow: 1px 1px 3px #777;
+        min-width: 400px;
+        font-size: 0.9em
+    }
+
+    .info {
+        color: #00529B;
+        background-color: #BDE5F8;
+    }
+
+    .success {
+        color: #4F8A10;
+        background-color: #DFF2BF;
+    }
+
+    .warning {
+        color: #9F6000;
+        background-color: #FEEFB3;
+    }
+
+    .error {
+        color: #D8000C;
+        background-color: #FFBABA;
+    }
+    /*https://isabelcastillo.com/error-info-messages-css*/
     </style>
 </head>
-
-<body style="max-width:500px; ">
+<body ">
     <h2>All Users</h2>
 
          <a id='addlink' href='/users/new'>Add User</a>
         <div id=container>
-    <table id="mincsstable">
+    <table id="mincsstable ">
         <tr>
-            <th id='fname'>First Name</th>
-            <th id='lname'>Last Name</th>
+            <th id='name'>Name</th>
             <th id='email'>Email</th>
             <th id='reg'>Registered</th>
             <th id='action'>Actions</th>
@@ -125,14 +132,13 @@ th{
         <!-- with all the data we can then construct a more structured output -->
         {% for user in myusers: %}        
         <tr>
-            <td>{{ user['first_name'] }}</td>
-            <td>{{ user['last_name'] }}</td>
+            <td>{{ user['name'] }}</td>
             <td>{{ user['email'] }}</td>
             <td>{{ user['created_at'].strftime('%Y-%m-%d %I:%M %p')}}</td>
             <td> 
-                <a class='actionlink' href='/users/{{ user["id"] }}/destroy'>Delete</a>
-                <a class='actionlink' href='/users/{{ user["id"] }}/edit'>Edit</a>
-                <a class='actionlink' href='/users/{{ user["id"] }}'>View</a>
+                <a class='actionlink' href='/users/{{ user["id "] }}'>View</a>
+                <a class='actionlink' href='/users/{{ user["id "] }}/edit'>Edit</a>
+                <a class='actionlink' href='/users/{{ user["id "] }}/destroy'>Delete</a>
             </td> 
         </tr>
         {% endfor %}

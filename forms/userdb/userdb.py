@@ -11,7 +11,7 @@ mysql = MySQLConnector(app,'userdb')
 # columns: id, name, email, created_at,updated_at
 # queries
 # select all columns all rows
-getallquery = "SELECT * FROM users"
+getallquery = "SELECT CONCAT(first_name,' ',last_name) as name,id,email,created_at from users"
 # select all columns, one row match, LIMIT 1
 getquery = "SELECT * FROM users where id = %s"  #id is primary/autoinc
 # add one row

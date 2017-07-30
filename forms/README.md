@@ -34,8 +34,6 @@
 
 `reguserdb-walldb-create.sql` **database file**
 
-## reguserdb-walldb-create.sql
-
 ## The Dojo Wall app
 
 `thewall.py`    # **server code and application**
@@ -70,9 +68,12 @@
 
 #### notes
 ```
-current sql operations in this dir: insert/delete/select simple commands
+Focus : CRUD and RESTFUL 
+      where CRUD : Create, Retrieve, Update, Delete
+      RESTFUL: Representational State Transfer (Paradigm?) - 
+(REST - using stateless nature of HTTP uses of POST/GET for client-server interaction )
 CRUD in the full friends app
 Register app - *Semi-RESTful*
-THE WALL app - No Update from CRUD
+THE WALL app - C R and D from CRUD, no update
 userdb : full CRUD semi-RESTFUL
 ```
