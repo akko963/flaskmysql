@@ -1,11 +1,14 @@
+
+
+
 <!doctype html>
 <html>
 
 <head>
     <meta charset="utf-8">
-    <meta name="description" content="Login/register app : CRUD Operations in flask/mysql">
+    <meta name="description" content="CRUD + RESTFUL Operations in flask/mysql">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Register Demo</title>
+    <title>USER DB Demo - getuser(1) for Retrieve  :  CRUD + RESTFUL Operations in flask</title>
     <style>
     * {
         margin: 0px;
@@ -30,7 +33,11 @@
         margin-left: 40px;
     }
 
-    .textinput {
+  #addlink {
+        display: inline-block;
+        margin-left: 300px;
+    }
+         .textinput {
         display: inline-block;
         width: 200px;
         margin: 5px 5px;
@@ -43,7 +50,7 @@
     }
 
     #container {
-        width: 380px;
+        min-width: 580px;
         margin: 10px;
         padding: 30px 30px;
         border: 1px solid black;
@@ -92,29 +99,41 @@ font-size: 0.9em
     color: #D8000C;
     background-color: #FFBABA;
 }
+th {
+    min-width: 90px;
+}
+label { margin: 10px 10px;
+        width }
+a{
+    margin-right: 10px;
+}        
 /*https://isabelcastillo.com/error-info-messages-css*/      
     </style>
 </head>
 
 <body style="max-width:500px; ">
-    <h2>Register</h2>
-    <div id=container>
-        <form action='/register/new' method='POST'>
-            <label for="user_name">User Name:</label>
-            <input class="textinput" type="text" name="user_name" id="user_name">
-            <label for="first_name">First Name:</label>
-            <input class="textinput" type="text" name="first_name" id="first_name">
-            <label for="last_name">Last Name:</label>
-            <input class="textinput" type="text" name="last_name" id="last_name">
-            <label for="email">Email:</label>
-            <input class="textinput" type="text" name="email" id="email">
-            <label for="password">Password:</label>
-            <input class="textinput" type="password" name="password" id="password">
-            <label for="password">Confirm:</label>
-            <input class="textinput" type="password" name="confirm" id="password">
-            
-            <input type="submit" id="button" value="Register">
-        </form>
+    <h2>Display User</h2>
+         <a id='addlink' href='/users'>List All Users</a>
+     
+    <div id="container">
+            <label id='fname'>First Name</label>
+            <span>{{ user['first_name'] }}</span>
+        <br>
+            <label id='lname'>Last Name</label>
+            <span>{{ user['last_name'] }}</span>
+        <br>
+            <label id='email'>Email</label>
+            <span>{{ user['email'] }}</span>
+        <br>
+            <label id='reg'>Registered</label>
+            <span>{{ user['created_at'].strftime('%Y-%m-%d %I:%M %p')}}</span>
+        <br>
+            <label id='action'>Actions</label>
+            <strong> 
+                <a class='dellink' href='/users/{{ user["id"] }}/edit'>Edit</a>
+                <a class='dellink' href='/users/{{ user["id"] }}/destroy'>Delete</a>
+            </strong> 
+        <br>
     </div>
     {% with messages = get_flashed_messages(with_categories=true) %} 
         {% if messages %}

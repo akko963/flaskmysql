@@ -20,7 +20,7 @@
 
 `templates/fullfriends-edit.html` # **edit page**
 
-`fullfriends.py`  # ** flask codes with app.run()**
+`fullfriends.py`  # ** server code and application **
 
 `mysqlconnection.py` #  **mysqlconnection stuff**
 
@@ -36,6 +36,7 @@
 
 ## reguserdb-walldb-create.sql
 
+## The Dojo Wall app
 
 `thewall.py`    # **server code and application**
 
@@ -49,7 +50,23 @@
 
 `reguserdb-walldb-create.sql` **database file**
 
-This single file contains reguserdb and walldb databases and tables creations - NO DATA
+## User DB app
+
+`userdb.py`    # **server code and application**
+
+`templates/getall.html`  **main template, get all users**
+
+`templates/adduser.html`  **template for add form**
+
+`templates/getuser.html`  **template for get one user**
+
+`templates/edituser.html`  **template for edit form**
+
+`mysqlconnection.py`  **Mysql code _unchanged_**
+
+`userdb.sql` **database file schema. no template**
+
+
 
 #### notes
 ```
@@ -57,4 +74,5 @@ current sql operations in this dir: insert/delete/select simple commands
 CRUD in the full friends app
 Register app - *Semi-RESTful*
 THE WALL app - No Update from CRUD
+userdb : full CRUD semi-RESTFUL
 ```

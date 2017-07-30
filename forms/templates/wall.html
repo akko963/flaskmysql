@@ -153,9 +153,10 @@ font-size: 0.9em
             {% endfor %}
         {% endif %} 
     {% endwith %}
-
-       {% for msg in msgs: %}
+    {% if msgs %}
+        {% for msg in msgs: %}
           {{ msg|safe }}
-        {% endfor %}     
+        {% endfor %}  
+    {% endif %}   
 </body>
 </html>

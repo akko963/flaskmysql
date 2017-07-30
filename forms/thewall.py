@@ -103,16 +103,7 @@ def login():  # check db, let him log-in by init'ing session
 # call the cleanup (clear the session)
 @app.route('/logout')
 def logout():
-   if 'user' in session:
-      session.pop('user')
-   if 'uid' in session:
-      session.pop('uid')
-   if 'first_name' in session:
-      session.pop('first_name')
-   if 'last_name' in session:
-      session.pop('last_name')
-   if 'email' in session:
-      session.pop('email')
+   session.clear()
    flash("Successfully logged out.",'success')
    return redirect('/')
 @app.route('/post',methods=['POST'])
@@ -140,12 +131,14 @@ def delete(type,id):
          flash('Message cannot be deleted with existing comments','error')
       elif not timecheck( mysqlwall.query_db("SELECT created_at FROM messages where id = %s"% id)):
          flash('Message cannot be deleted after 30mins','error')
-      elif mysqlwall.query_db("DELETE FROM messages Where id=%s"  %id) :
+      else:
+         mysqlwall.query_db("DELETE FROM messages Where id=%s"  %id)
          flash('Message deleted successfully!','success')
    elif type=='cmt':
       if not timecheck( mysqlwall.query_db("SELECT created_at FROM comments where id=%s"%id)):
          flash('Message cannot be deleted after 30mins','error')
-      elif mysqlwall.query_db("DELETE FROM comments Where id=%s"  %id) :
+      else:
+         mysqlwall.query_db("DELETE FROM comments Where id=%s"  %id) 
          flash('Comment deleted successfully!','success')
    else:
       flash('Unknown error. Insufficient data provided for deletion.','error')

@@ -96,16 +96,7 @@ def login():  # check db, let him log-in by init'ing session
 # call the cleanup (clear the session)
 @app.route('/logout')
 def logout():
-   if 'validated' in session:
-      session.pop('validated')
-   if 'user' in session:
-      session.pop('user')
-   if 'first_name' in session:
-      session.pop('first_name')
-   if 'last_name' in session:
-      session.pop('last_name')
-   if 'email' in session:
-      session.pop('email')
+   session.clear()
    return redirect('/')
 
 #check errors on users, their names and passwords
