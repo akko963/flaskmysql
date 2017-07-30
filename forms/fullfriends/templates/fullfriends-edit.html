@@ -1,0 +1,96 @@
+<!doctype html>
+<html>
+
+<head>
+    <title>Friends</title>
+    <style>
+    h2 {
+        margin: 30px 10px 10px 55px;
+    }
+
+    table {
+        font-family: "Lucida Sans Unicode", "Lucida Grande", Sans-Serif;
+        font-size: 12px;
+        background: #fff;
+        margin: 20px 0px 20px 55px;
+        width: 300px;
+        border-collapse: collapse;
+
+        text-align: left;
+    }
+
+    label {
+        display: inline-block;
+        width: 100px;
+    }
+
+    form {
+        display: inline-block;
+        padding: 0;
+        margin: 0;
+    }
+
+    .textinput {
+        display: inline-block;
+        width: 200px;
+        margin: 5px 5px;
+    }
+
+    input {
+        display: inline;
+        width: 60px;
+        padding: 3px 3px;
+        margin-right: 3px;
+    }
+
+    #container {
+        width: 400px;
+        margin: 50px 10px 10px 55px;
+    }
+
+    p {
+        margin: auto;
+        margin-bottom: 20px;
+        color: peru;
+        background-color: wheat;
+        padding: 10px 40px;
+        width: 500px;
+        min-height: 50px;
+        border-radius: 5px;
+        border: 1px solid black;
+    }
+    </style>
+</head>
+
+<body style="max-width:500px; ">
+    <h2>Edit</h2>
+    <table>
+        <tr>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Email</th>
+        </tr>
+        <tr>
+            <td>{{ toedit['first_name'] }}</td>
+            <td>{{ toedit['last_name'] }}</td>
+            <td>{{ toedit['email'] }}</td>
+        </tr>
+    </table>
+    {% with messages = get_flashed_messages() %} {% if messages %}
+    <p>{{ messages[0]}}</p>
+    {% else %}
+    <div id=container>
+        <form action='/friends/{{editid}}' method='POST'>
+            <label for="first_name">First Name:</label>
+            <input class="textinput" type="text" name="first_name" id="first_name">
+            <label for="last_name">Last Name:</label>
+            <input class="textinput" type="text" name="last_name" id="last_name">
+            <label for="email">Email:</label>
+            <input class="textinput" type="text" name="email" id="email">
+            <input type="submit" value="Add">
+        </form>
+    </div>
+    {% endif %} {% endwith %}
+</body>
+
+</html>

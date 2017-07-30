@@ -2,8 +2,8 @@ from flask import Flask, request, redirect, render_template, session, flash
 from mysqlconnection import MySQLConnector
 import re
 
-app = Flask(__name__)
-app.secret_key = 'nobodyknows'
+app = Flask(__name__, template_folder='templates')
+app.secret_key = 'asdf'
 mysql = MySQLConnector(app,'userdb')
 
 # USING DB : usersdb
@@ -27,7 +27,7 @@ def index():#@todo
     myusers = mysql.query_db(getallquery)      
     #for user in myusers:
        #pass
-    return render_template('getall.html',myusers=myusers) # pass data to our template
+    return render_template('templates/getall.html',myusers=myusers) # pass data to our template
 
 # /users/<id>   : get, user's individual info page
 @app.route('/users/<id>')

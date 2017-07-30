@@ -1,0 +1,90 @@
+<html>
+<head>
+  <title>Friends</title>
+  <style>
+#mincsstable
+{
+   font-family: "Lucida Sans Unicode", "Lucida Grande", Sans-Serif;
+   font-size: 12px;
+   background: #fff;
+   margin: 45px;
+   width: 480px;
+   border-collapse: collapse;
+   text-align: left;
+}
+#mincsstable th
+{
+   font-size: 14px;
+   font-weight: normal;
+   color: #039;
+   padding: 10px 8px;
+   border-bottom: 2px solid #6678b1;
+}
+#mincsstable td
+{
+   color: #669;
+   padding: 9px 8px 0px 8px;
+}
+#mincsstable tbody tr:hover td
+{
+   color: #009;
+}
+h2, label
+{   
+   margin-top:10px;
+   margin-left: 50px;
+}
+p
+{
+   margin: auto; 
+   margin-bottom: 20px;
+   color:peru;background-color: wheat; 
+   padding: 10px 40px;  
+   width: 500px; 
+   min-height: 50px;  
+   border-radius: 5px; border: 1px solid black;
+}
+
+
+  </style>
+</head>
+<body style="max-width:700px; "">
+
+<h2>List of Guests</h2>
+<table id="mincsstable">
+<tr>
+<th id='Email'>Email</th>
+<th id='created_at'>Registered</th>
+</tr>
+
+
+<!-- with all the data we can then construct a more structured output -->
+
+{% for email in myguests: %}
+<tr>
+   <td>{{ email['email'] }}</td>
+   <td>{{ email['created_at'].strftime('%Y-%m-%d %I:%M %p')  }}</td>
+   <td> 
+   {{ email['deleteline'] | safe}} </td>
+
+</tr>
+{% endfor %}
+</table>
+
+        {% with messages = get_flashed_messages() %}
+            
+            {% if messages %}
+            <p>        
+                {% for  message in messages %}
+                   {{ message }}
+                {% endfor%}
+            </p>
+            {% endif %}
+        {% endwith %}  
+
+<form action='/guests' method='POST'>       
+    <label for="email">Email:<input type="text" name="email" id="email"></label>
+    <input type="submit" name="action" value="Add">
+  </form>
+</body>
+</html>

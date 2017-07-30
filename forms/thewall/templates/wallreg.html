@@ -1,0 +1,147 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="description" content="Login/register app : CRUD Operations in flask/mysql">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Register Demo</title>
+    <style>
+    * {
+        margin: 0px;
+        padding: 0px;
+    }
+    
+    body {
+        background-color: gainsboro;
+        font-family: "Lucida Sans Unicode", "Lucida Grande", Sans-Serif;
+        width: 950px;
+        min-height: 600px;
+
+        padding: 10px 10px;
+    }
+    #bar>*{
+        display: inline-block;
+    }
+    #bar {
+        border-bottom: 2px black solid;
+        width: 100%;
+
+    }
+    #brand {
+        width: 180px;
+        margin-right: 520px;
+        margin-left: 20px;
+    }
+    #loggedin {
+
+    }
+    #logoutbutton {
+        margin: 0px 0px 10px 20px;
+        padding: 3px 15px;
+    }
+
+    h2 {
+        margin: 20px 10px;
+        text-align: center;
+    }
+
+    label {
+        display: inline-block;
+        width: 100px;
+        margin-left: 24px;
+    }
+
+    .textinput {
+        display: inline-block;
+        width: 200px;
+        margin: 5px 5px;
+        padding: 3px 3px;
+    }
+
+    #button {
+        display: block;
+        width: 160px;
+        margin: auto;
+        margin-top: 10px;
+        padding: 3px 10px;
+    }
+
+    #container {
+        display: inline-block;
+        margin-left: 250px;   
+
+        width: 380px;
+        padding: 30px 30px;
+        border: 1px solid black;
+        border-radius: 5px;
+        box-shadow: 2px 2px 4px gray;
+        }
+
+.info, .success, .warning, .error {
+margin: 10px 0px 10px 30px;
+padding:12px;
+padding-left: 30px;
+
+border-radius: .5em;
+border:1px solid;
+box-shadow: 1px 1px 3px #777;
+min-width: 400px;
+font-size: 0.9em
+}
+.info {
+    color: #00529B;
+    background-color: #BDE5F8;
+}
+.success {
+    color: #4F8A10;
+    background-color: #DFF2BF;
+}
+.warning {
+    color: #9F6000;
+    background-color: #FEEFB3;
+}
+.error {
+    color: #D8000C;
+    background-color: #FFBABA;
+}
+/*https://isabelcastillo.com/error-info-messages-css*/
+    </style>
+</head>
+
+<body">
+    <div id="bar">
+        <h3 id="brand">Coding Dojo Wall</h3><h4 id="loggedin"> Welcome.
+        </h4> 
+    </div>
+
+    <h2>Register</h2>
+    <div id=container>
+        <form action='/register/new' method='POST'>
+            <label for="user_name">User Name:</label>
+            <input class="textinput" type="text" name="user_name" id="user_name">
+            <label for="first_name">First Name:</label>
+            <input class="textinput" type="text" name="first_name" id="first_name">
+            <label for="last_name">Last Name:</label>
+            <input class="textinput" type="text" name="last_name" id="last_name">
+            <label for="email">Email:</label>
+            <input class="textinput" type="text" name="email" id="email">
+            <label for="password">Password:</label>
+            <input class="textinput" type="password" name="password" id="password">
+            <label for="password">Confirm:</label>
+            <input class="textinput" type="password" name="confirm" id="password">
+            
+            <input type="submit" id="button" value="Register">
+        </form>
+    </div>
+    {% with messages = get_flashed_messages(with_categories=true) %} 
+        {% if messages %}
+            {% for cat, msg in  messages %}
+                <div class='{{cat}}'>{{msg}}</div>
+            {% endfor %}
+        {% endif %} 
+    {% endwith %}
+
+</body>
+
+</html>

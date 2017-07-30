@@ -1,0 +1,128 @@
+<!doctype html>
+<html>
+
+<head>
+    <title>Friends</title>
+    <style>
+    #mincsstable {
+        font-family: "Lucida Sans Unicode", "Lucida Grande", Sans-Serif;
+        font-size: 12px;
+        background: #fff;
+        margin: 45px;
+        width: 900px;
+        border-collapse: collapse;
+        text-align: left;
+    }
+
+    #mincsstable #email,
+    #mincsstable #reg {
+        width: 200px;
+    }
+
+    #mincsstable th {
+        font-size: 14px;
+        font-weight: normal;
+        color: #039;
+        padding: 10px 8px;
+        border-bottom: 2px solid #6678b1;
+        width: 140px;
+    }
+
+    #mincsstable td {
+        color: #669;
+        padding: 9px 8px 0px 8px;
+    }
+
+    #mincsstable tbody tr:hover td {
+        color: #009;
+    }
+
+    h2 {
+        display: block;
+        margin-top: 10px;
+        margin-left: 50px;
+    }
+
+    label {
+        display: inline-block;
+        width: 100px;
+    }
+
+    form {
+        display: inline-block;
+        padding: 0;
+        margin: 0;
+    }
+
+    .textinput {
+        display: inline-block;
+        width: 200px;
+        margin: 5px 5px;
+    }
+
+    input {
+        display: inline;
+        width: 60px;
+        padding: 3px 3px;
+        margin-right: 3px;
+    }
+
+    #container {
+        width: 400px;
+        margin: 50px 10px 10px 55px;
+    }
+
+    p {
+        margin: auto;
+        margin-bottom: 20px;
+        color: peru;
+        background-color: wheat;
+        padding: 10px 40px;
+        width: 500px;
+        min-height: 50px;
+        border-radius: 5px;
+        border: 1px solid black;
+    }
+    </style>
+</head>
+
+<body style="max-width:900px; ">
+    <h2>List of Friends</h2>
+    <table id="mincsstable">
+        <tr>
+            <th id='fname'>First Name</th>
+            <th id='lname'>Last Name</th>
+            <th id='email'>Email</th>
+            <th id='reg'>Registered</th>
+            <th id='action'>Actions</th>
+        </tr>
+        <!-- with all the data we can then construct a more structured output -->
+        {% for friend in myfriends: %}
+        <tr>
+            <td>{{ friend['first_name'] }}</td>
+            <td>{{ friend['last_name'] }}</td>
+            <td>{{ friend['email'] }}</td>
+            <td>{{ friend['created_at'].strftime('%Y-%m-%d %I:%M %p') }}</td>
+            <td>{{friend['actionline']|safe}}</td>
+        </tr>
+        {% endfor %}
+    </table>
+    {% with messages = get_flashed_messages() %} {% if messages %}
+    <p>
+        {% for message in messages %} {{ message }} {% endfor%}
+    </p>
+    {% endif %} {% endwith %}
+    <div id=container>
+        <form action='/friends' method='POST'>
+            <label for="first_name">First Name:</label>
+            <input class="textinput" type="text" name="first_name" id="first_name">
+            <label for="last_name">Last Name:</label>
+            <input class="textinput" type="text" name="last_name" id="last_name">
+            <label for="email">Email:</label>
+            <input class="textinput" type="text" name="email" id="email">
+            <input type="submit" value="Add">
+        </form>
+    </div>
+</body>
+
+</html>
