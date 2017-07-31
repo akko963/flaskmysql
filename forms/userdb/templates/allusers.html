@@ -1,0 +1,132 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="description" content="Login/register app : CRUD Operations in flask/mysql">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Retrieve - From CRUD</title>
+    <style>
+    * {
+        margin: 0px;
+        padding: 0px;
+    }
+    
+    body {
+        background-color: gainsboro;
+        font-family: lucida;
+        width: 950px;
+        min-height: 600px;
+
+        padding: 20px 50px;
+    }
+    #bar>*{
+        display: inline-block;
+    }
+    #bar {
+        padding-left: 240px;
+        margin-bottom: 20px;
+
+    }
+    #loggedin {
+
+    }
+    #logoutbutton {
+        margin: 0px 0px 10px 30px;
+        padding: 3px 15px;
+    }
+    #mincsstable {
+        font-family: "Lucida Sans Unicode", "Lucida Grande", Sans-Serif;
+        font-size: 11px;
+        background: gainsboro;
+        margin: 10px 20px;
+        width: 500px;
+        border-collapse: collapse;
+        text-align: left;
+    }
+
+    #mincsstable #email,
+    #mincsstable #reg {
+        width: 100px;
+    }
+
+    #mincsstable th {
+        font-size: 12px;
+        font-weight: normal;
+        color: #039;
+        padding: 10px 8px;
+        border-bottom: 2px solid #6678b1;
+        width: 60px;
+    }
+
+    #mincsstable td {
+        color: #669;
+        padding: 9px 8px 0px 8px;
+    }
+
+    #mincsstable tbody tr:hover td {
+        color: #009;
+    }
+
+    p {
+        margin: auto;
+        margin-bottom: 20px;
+        color: peru;
+        background-color: wheat;
+        padding: 10px 40px;
+        width: 500px;
+        min-height: 50px;
+        border-radius: 5px;
+        border: 1px solid black;
+    }
+
+    #container {
+        width: 550px;
+        margin: 20px 0;
+        border: 1px solid black;
+        border-radius: 5px;
+        box-shadow: 2px 2px 4px gray;
+        padding-bottom: 20px;
+        min-height: 140px;
+    } 
+    #otherpage{
+        margin: 30px 0px;
+        padding: 3px 20px;
+    }
+    </style>
+</head>
+
+<body style="max-width:500px; ">
+    <div id="bar">
+        <h4 id="loggedin"> logged in as</h4> <a href="#">{{ session['user_name'] }}</a> 
+        <form action="/logout" method="GET">
+        <input type="submit" id="logoutbutton" value="Logout"></form>
+    </div>
+    <h3>User Directory</h3>
+    <div id=container>
+    <table id="mincsstable">
+        <tr>
+            <th id='fname'>User Name</th>
+            <th id='email'>Email</th>
+            <th id='reg'>Registered</th>
+        </tr>
+        <!-- with all the data we can then construct a more structured output -->
+        {% for friend in records: %}
+        <tr>
+            <td>{{ friend['user_name'] }}</td>
+            <td>{{ friend['email'] }}</td>
+            <td>{{ friend['created_at'].strftime('%Y-%m-%d %I:%M %p') }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+
+    {% with messages = get_flashed_messages() %} {% if messages %}
+    <p>{{ messages[0]}}</p>
+    {% else %}
+    {% endif %} {% endwith %}
+    </div>
+        <form action="/" method="GET">
+        <input type="submit" id="otherpage" value="Return to My Info"></form>
+</body>
+
+</html>
